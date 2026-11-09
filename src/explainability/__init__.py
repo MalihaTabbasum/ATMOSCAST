@@ -1,4 +1,8 @@
 """
-Explainable AI (XAI) Module
-Provides SHAP values, summary plots, feature contribution waterfall charts, and atmospheric sensitivity analysis.
+Explainability Package for AtmosCast.
 """
+
+from src.explainability.explainer import ModelExplainer
+from src.explainability.pipeline import ExplainabilityPipeline
+
+__all__ = ["ModelExplainer", "ExplainabilityPipeline"]
