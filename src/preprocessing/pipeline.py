@@ -6,7 +6,7 @@ and dataset merging. Produces the official data quality audit report.
 
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, Optional
 import json
 import logging
 import pandas as pd

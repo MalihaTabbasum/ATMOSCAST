@@ -10,8 +10,6 @@ Generates interactive charts with AtmosCast Deep Navy and Teal styling:
 6. Severe pollution episode error analysis
 """
 
-from pathlib import Path
-from typing import Dict, List, Optional
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go

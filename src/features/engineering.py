@@ -32,8 +32,25 @@ class FeatureEngineer:
     TIER3_COUPLED_ATMOSPHERIC = "tier3_coupled_atmospheric"
 
     def __init__(self, target_pollutant: str = "pm25"):
-        self.target_pollutant = target_pollutant
+        target_norm = target_pollutant.lower().replace(".", "")
+        valid_targets = ["pm25", "pm10", "no2", "o3", "so2", "co"]
+        if target_norm not in valid_targets:
+            raise ValueError(
+                f"Unsupported target pollutant '{target_pollutant}'. Must be one of {valid_targets}."
+            )
+        self.target_pollutant = target_norm
         self.feature_columns_by_tier: Dict[str, List[str]] = {}
+
+    def get_feature_columns(self, tier_name: str) -> List[str]:
+        """Returns the engineered feature columns for a specified tier."""
+        valid_tiers = [
+            self.TIER1_POLLUTION_ONLY,
+            self.TIER2_POLLUTION_WEATHER,
+            self.TIER3_COUPLED_ATMOSPHERIC,
+        ]
+        if tier_name not in valid_tiers:
+            raise ValueError(f"Unknown tier: '{tier_name}'. Must be one of {valid_tiers}.")
+        return self.feature_columns_by_tier.get(tier_name, [])
 
     def extract_temporal_features(self, df: pd.DataFrame) -> pd.DataFrame:
         """

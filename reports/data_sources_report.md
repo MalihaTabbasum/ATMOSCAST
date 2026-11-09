@@ -1,6 +1,6 @@
 # AtmosCast Data Sources Audit & Ingestion Report
 
-**Generated:** 2026-11-09 12:40:57 UTC  
+**Generated:** 2026-11-09 15:08:09 UTC  
 **Region:** Delhi National Capital Region (Delhi NCR), India  
 **Scope:** Phase 2 Real-World Data Ingestion Pipeline  
 
@@ -10,8 +10,8 @@
 
 | Source Name | Endpoint / API | Status | Auth Required | Latency | Operational Role |
 |---|---|---|---|---|---|
-| **Open-Meteo Historical Weather** | `https://archive-api.open-meteo.com/v1/archive` | `CONNECTED` | None | 674 ms | Surface meteorology (Temp, RH, Wind, Pressure, Rain) |
-| **Copernicus CAMS (via Open-Meteo AQ)** | `https://air-quality-api.open-meteo.com/v1/air-quality` | `CONNECTED` | None | 257 ms | Reanalysis air quality (PM2.5, PM10, NO2, O3, SO2, CO) |
+| **Open-Meteo Historical Weather** | `https://archive-api.open-meteo.com/v1/archive` | `UNREACHABLE` | None | N/A ms | Surface meteorology (Temp, RH, Wind, Pressure, Rain) |
+| **Copernicus CAMS (via Open-Meteo AQ)** | `https://air-quality-api.open-meteo.com/v1/air-quality` | `UNREACHABLE` | None | N/A ms | Reanalysis air quality (PM2.5, PM10, NO2, O3, SO2, CO) |
 | **OpenAQ API v3** | `https://api.openaq.org/v3` | `AUTHENTICATION_REQUIRED` | `X-API-Key` | N/A ms | Continuous Ambient Air Quality Monitoring Station (CAAQMS) |
 | **NASA FIRMS** | `https://firms.modaps.eosdis.nasa.gov/api/area/csv` | `OPTIONAL_UNCONFIGURED` | `MAP_KEY` | N/A ms | Regional active fires & Fire Radiative Power (FRP) |
 

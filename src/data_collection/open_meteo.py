@@ -3,11 +3,8 @@ Open-Meteo Historical & Boundary-Layer Weather Collector
 Fetches hourly surface meteorology and boundary-layer height for Delhi NCR monitoring stations.
 """
 
-from datetime import datetime, timezone
-from pathlib import Path
 from typing import Any, Dict, List, Optional
 import pandas as pd
-import requests
 
 from src.data_collection.base import BaseDataCollector, logger
 

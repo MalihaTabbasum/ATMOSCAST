@@ -10,7 +10,6 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional
-import pandas as pd
 
 from src.data_collection.base import logger
 from src.data_collection.open_meteo import OpenMeteoCollector

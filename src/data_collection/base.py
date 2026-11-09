@@ -7,14 +7,14 @@ retries, timeout handling, raw dataset persistence, and provenance tracking.
 from abc import ABC, abstractmethod
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 import json
 import logging
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-from src.utils.config import get_project_root, load_config
+from src.utils.config import get_project_root
 
 logger = logging.getLogger("AtmosCast.DataCollection")
 if not logger.handlers:

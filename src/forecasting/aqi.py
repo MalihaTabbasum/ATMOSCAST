@@ -9,7 +9,7 @@ Implements statutory Indian CPCB methodology:
 - Clean category classification: Good, Satisfactory, Moderate, Poor, Very Poor, Severe.
 """
 
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 
 

@@ -5,13 +5,10 @@ for Delhi NCR monitoring stations from the Copernicus Atmosphere Monitoring Serv
 Provides authentic atmospheric data accessible without API key barriers.
 """
 
-from datetime import datetime, timezone
-from pathlib import Path
 from typing import Any, Dict, List, Optional
 import pandas as pd
-import requests
 
-from src.data_collection.base import BaseDataCollector, logger
+from src.data_collection.base import BaseDataCollector
 
 
 class CAMSAirQualityCollector(BaseDataCollector):

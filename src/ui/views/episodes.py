@@ -3,7 +3,6 @@ Pollution Episode Analysis View for AtmosCast.
 """
 
 from typing import Any, Dict
-from pathlib import Path
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st

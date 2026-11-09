@@ -5,12 +5,12 @@ from data/raw/ alongside their provenance metadata into structured DataFrames.
 """
 
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple
 import json
 import logging
 import pandas as pd
 
-from src.utils.config import get_project_root, load_config
+from src.utils.config import get_project_root
 
 logger = logging.getLogger("AtmosCast.Preprocessing.Loader")
 if not logger.handlers:

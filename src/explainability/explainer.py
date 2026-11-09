@@ -11,7 +11,7 @@ Wraps shap.TreeExplainer to compute:
 import os
 from pathlib import Path
 import tempfile
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Tuple, Union
 import joblib
 import numpy as np
 import pandas as pd

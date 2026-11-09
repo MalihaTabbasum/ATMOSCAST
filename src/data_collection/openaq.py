@@ -4,12 +4,9 @@ Implements location discovery, sensor mapping, and measurement retrieval
 for Delhi NCR monitoring stations according to the official OpenAQ v3 specification.
 """
 
-from datetime import datetime, timezone
 import os
-from pathlib import Path
 from typing import Any, Dict, List, Optional
 import pandas as pd
-import requests
 
 from src.data_collection.base import BaseDataCollector, logger
 from src.utils.config import load_config

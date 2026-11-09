@@ -5,13 +5,10 @@ for the upwind agricultural stubble burning corridor (Punjab & Haryana).
 Implemented as an optional data source.
 """
 
-from datetime import datetime, timezone
 import os
-from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 import io
 import pandas as pd
-import requests
 
 from src.data_collection.base import BaseDataCollector, logger
 from src.utils.config import load_config

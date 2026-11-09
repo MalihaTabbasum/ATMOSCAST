@@ -5,7 +5,6 @@ Model Performance & Validation Benchmarking View for AtmosCast.
 from pathlib import Path
 import json
 import pandas as pd
-import plotly.graph_objects as go
 import streamlit as st
 
 from src.evaluation.plots import plot_model_comparison_bars, plot_horizon_error_trajectory

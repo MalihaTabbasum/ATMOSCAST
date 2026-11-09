@@ -8,7 +8,7 @@ Generates interactive charts with AtmosCast Deep Navy and Teal styling:
 4. Meteorological non-linear SHAP dependence
 """
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go

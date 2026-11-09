@@ -12,7 +12,7 @@ and generates hourly forward projections for 1 to 72 hours with:
 
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional
 import joblib
 import numpy as np
 import pandas as pd
@@ -143,10 +143,10 @@ class ForecastEngine:
 
         try:
             if "timestamp_utc" in df.columns:
-                df["timestamp_utc"] = pd.to_datetime(df["timestamp_utc"], utc=True)
+                df["timestamp_utc"] = pd.to_datetime(df["timestamp_utc"], utc=True, format="mixed")
                 df["timestamp_ist"] = df["timestamp_utc"].dt.tz_convert("Asia/Kolkata")
             else:
-                df["timestamp_ist"] = pd.to_datetime(df["timestamp_ist"])
+                df["timestamp_ist"] = pd.to_datetime(df["timestamp_ist"], format="mixed")
                 if df["timestamp_ist"].dt.tz is None:
                     df["timestamp_ist"] = df["timestamp_ist"].dt.tz_localize("Asia/Kolkata")
                 df["timestamp_utc"] = df["timestamp_ist"].dt.tz_convert("UTC")
@@ -157,7 +157,21 @@ class ForecastEngine:
         df = df.sort_values(by="timestamp_utc").reset_index(drop=True)
 
         # Missing value handling (forward fill up to 3 hours, then mean fallback)
-        core_cols = [self.target_pollutant, "pm10", "temperature_2m", "relative_humidity_2m", "wind_speed_10m", "surface_pressure"]
+        core_cols = [
+            self.target_pollutant,
+            "pm10",
+            "temperature_2m",
+            "relative_humidity_2m",
+            "wind_speed_10m",
+            "surface_pressure",
+            "dew_point_2m",
+            "precipitation",
+        ]
+        if "precipitation" not in df.columns:
+            df["precipitation"] = 0.0
+        if "dew_point_2m" not in df.columns and "temperature_2m" in df.columns and "relative_humidity_2m" in df.columns:
+            df["dew_point_2m"] = df["temperature_2m"] - ((100.0 - df["relative_humidity_2m"]) / 5.0)
+
         for col in core_cols:
             if col in df.columns:
                 df[col] = df[col].ffill(limit=3)
