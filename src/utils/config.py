@@ -51,19 +51,41 @@ def load_config(config_path: Optional[Path] = None) -> Dict[str, Any]:
 
 
 def _inject_env_overrides(config: Dict[str, Any]) -> None:
-    """Safely apply environment variables to configuration without mutating defaults if absent."""
+    """Safely apply environment variables and Streamlit secrets to configuration.
+
+    Priority order (highest first):
+    1. Environment variables (os.getenv)
+    2. Streamlit st.secrets (when running on Streamlit Cloud)
+    3. YAML defaults (no override applied)
+    """
     if "api" not in config:
         config["api"] = {}
 
-    openaq_key = os.getenv("OPENAQ_API_KEY")
+    # Collect keys from Streamlit secrets when available (Streamlit Cloud deployment)
+    _streamlit_secrets: Dict[str, str] = {}
+    try:
+        import streamlit as st  # type: ignore
+        if hasattr(st, "secrets"):
+            for k in ("OPENAQ_API_KEY", "NASA_FIRMS_MAP_KEY", "CPCB_API_KEY"):
+                val = st.secrets.get(k, "")
+                if val:
+                    _streamlit_secrets[k] = val
+    except Exception:
+        pass  # Not running under Streamlit — skip silently
+
+    def _get(key: str) -> Optional[str]:
+        """Return env var > Streamlit secret > None."""
+        return os.getenv(key) or _streamlit_secrets.get(key)
+
+    openaq_key = _get("OPENAQ_API_KEY")
     if openaq_key:
         config["api"]["openaq_api_key"] = openaq_key
 
-    firms_key = os.getenv("NASA_FIRMS_MAP_KEY")
+    firms_key = _get("NASA_FIRMS_MAP_KEY")
     if firms_key:
         config["api"]["nasa_firms_map_key"] = firms_key
 
-    cpcb_key = os.getenv("CPCB_API_KEY")
+    cpcb_key = _get("CPCB_API_KEY")
     if cpcb_key:
         config["api"]["cpcb_api_key"] = cpcb_key
 

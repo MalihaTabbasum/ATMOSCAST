@@ -1,8 +1,9 @@
 """
 AtmosCast: Weather-Aware Air Pollution Forecasting System
-Main Streamlit Application Dashboard (Phase 9)
+Main Streamlit Application Dashboard
 
 Delhi NCR Focus (SIH Problem Statement SIH26082)
+Deployment: Streamlit Community Cloud compatible
 """
 
 from pathlib import Path
@@ -10,10 +11,10 @@ import sys
 import pandas as pd
 import streamlit as st
 
-# Ensure project root is in sys.path
-root_dir = Path(__file__).resolve().parent
-if str(root_dir) not in sys.path:
-    sys.path.insert(0, str(root_dir))
+# Resolve project root from app.py's location — works locally and on Streamlit Cloud
+_APP_DIR = Path(__file__).resolve().parent
+if str(_APP_DIR) not in sys.path:
+    sys.path.insert(0, str(_APP_DIR))
 
 from src.utils.config import load_config, get_stations
 from src.ui.theme import CUSTOM_CSS
@@ -26,7 +27,7 @@ from src.ui.views.performance import render_performance_view
 from src.ui.views.explainability import render_explainability_view
 from src.ui.views.about import render_about_view
 
-# Page configuration
+# ── Streamlit page configuration ───────────────────────────────────────────────
 st.set_page_config(
     page_title="AtmosCast | Environmental Intelligence",
     page_icon="🌫️",
@@ -45,13 +46,37 @@ def get_cached_config():
 
 
 @st.cache_data
-def load_analytical_dataset():
-    """Loads the verified cleaned merged analytical dataset."""
-    data_path = Path("data/processed/merged_delhi_ncr_hourly.csv")
-    if not data_path.exists():
-        st.error(f"Processed dataset not found at {data_path}. Please verify Phase 3 preprocessing.")
-        return pd.DataFrame()
-    return pd.read_csv(data_path)
+def load_analytical_dataset() -> pd.DataFrame:
+    """Load the cleaned merged analytical dataset.
+
+    Resolution order (supports both local dev and Streamlit Cloud):
+    1. <app_dir>/data/processed/merged_delhi_ncr_hourly.csv  (repo-relative)
+    2. data/processed/merged_delhi_ncr_hourly.csv            (cwd fallback)
+    """
+    candidates = [
+        _APP_DIR / "data" / "processed" / "merged_delhi_ncr_hourly.csv",
+        Path("data") / "processed" / "merged_delhi_ncr_hourly.csv",
+    ]
+    for data_path in candidates:
+        if data_path.exists():
+            try:
+                df = pd.read_csv(data_path)
+                return df
+            except Exception as exc:
+                st.warning(f"Dataset found at {data_path} but could not be read: {exc}")
+                return pd.DataFrame()
+
+    # Dataset not found — show a user-friendly, actionable message
+    st.error(
+        "**Dataset not found.**  \n"
+        "The file `data/processed/merged_delhi_ncr_hourly.csv` was not found.  \n\n"
+        "If running locally, re-run the preprocessing pipeline:  \n"
+        "```bash\n"
+        "python -m src.preprocessing.pipeline\n"
+        "```\n\n"
+        "If this is a fresh clone, ensure the processed data file is present in the repository."
+    )
+    return pd.DataFrame()
 
 
 def render_sidebar(config, df: pd.DataFrame):

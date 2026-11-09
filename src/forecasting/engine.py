@@ -73,15 +73,26 @@ class ForecastEngine:
         72: 55.84,
     }
 
+    # Default models directory resolved from project root (robust for Streamlit Cloud)
+    _DEFAULT_MODELS_DIR = Path(__file__).resolve().parent.parent.parent / 'models'
+
     def __init__(
         self,
-        models_dir: str = "models",
+        models_dir: str = "",
         model_type: str = "xgboost",
         tier_name: str = "tier2_pollution_and_weather",
         target_pollutant: str = "pm25",
         horizons: List[int] = [24, 48, 72],
     ):
-        self.models_dir = Path(models_dir)
+        # Resolve models directory: explicit arg > project-root/models > cwd/models
+        if models_dir:
+            self.models_dir = Path(models_dir)
+        else:
+            self.models_dir = (
+                self._DEFAULT_MODELS_DIR
+                if self._DEFAULT_MODELS_DIR.exists()
+                else Path('models')
+            )
         self.model_type = model_type
         self.tier_name = tier_name
         self.target_pollutant = target_pollutant

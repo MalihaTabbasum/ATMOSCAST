@@ -44,20 +44,26 @@ venv.bak/
 # Streamlit local settings & secrets
 .streamlit/secrets.toml
 
-# AtmosCast Data directories (Keep repository lightweight & prevent data leak)
+# AtmosCast Data directories — raw data excluded; processed dataset committed for cloud deployment
 data/raw/*
 !data/raw/.gitkeep
-data/processed/*
-!data/processed/.gitkeep
 data/external/*
 !data/external/.gitkeep
 
-# Machine Learning Models and Artifacts
+# Processed data: include the main merged dataset for Streamlit Cloud deployment
+# (247 KB — well within GitHub limits; no personal or restricted data)
+data/processed/*
+!data/processed/.gitkeep
+!data/processed/merged_delhi_ncr_hourly.csv
+
+# Machine Learning Models — include trained artifacts for cloud deployment (11.5 MB total)
+# Individual large intermediary files remain excluded
 models/*.pkl
-models/*.joblib
-models/*.json
 models/*.pt
 models/*.onnx
+# Allow .joblib artifacts and model registry (required for ForecastEngine on Streamlit Cloud)
+!models/*.joblib
+!models/model_registry.json
 
 # Reports and generated exports
 reports/*.html

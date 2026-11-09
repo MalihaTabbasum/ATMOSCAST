@@ -1,0 +1,745 @@
+{
+  "target_pollutant": "pm25",
+  "horizons": [
+    24,
+    48,
+    72
+  ],
+  "model_count": 27,
+  "feature_tier_counts": {
+    "tier1_pollution_only": 38,
+    "tier2_pollution_and_weather": 59,
+    "tier3_coupled_atmospheric": 65
+  },
+  "models": [
+    {
+      "model_type": "persistence",
+      "tier_name": "tier1_pollution_only",
+      "target_pollutant": "pm25",
+      "horizon": 24,
+      "train_samples": 504,
+      "test_samples": 108,
+      "train_metrics": {
+        "MAE": 13.424,
+        "RMSE": 17.141,
+        "R2": 0.4483,
+        "MAPE": 12.67
+      },
+      "val_metrics": {
+        "MAE": 17.675,
+        "RMSE": 21.07,
+        "R2": -0.5882,
+        "MAPE": 12.57
+      },
+      "test_metrics": {
+        "MAE": 39.469,
+        "RMSE": 42.892,
+        "R2": -0.0496,
+        "MAPE": 24.71
+      },
+      "artifact_path": "models/persistence_tier1_pollution_only_pm25_h24.joblib"
+    },
+    {
+      "model_type": "random_forest",
+      "tier_name": "tier1_pollution_only",
+      "target_pollutant": "pm25",
+      "horizon": 24,
+      "train_samples": 504,
+      "test_samples": 108,
+      "train_metrics": {
+        "MAE": 0.666,
+        "RMSE": 0.916,
+        "R2": 0.9984,
+        "MAPE": 0.59
+      },
+      "val_metrics": {
+        "MAE": 15.104,
+        "RMSE": 16.87,
+        "R2": -0.0181,
+        "MAPE": 11.01
+      },
+      "test_metrics": {
+        "MAE": 41.346,
+        "RMSE": 47.637,
+        "R2": -0.2948,
+        "MAPE": 24.53
+      },
+      "artifact_path": "models/random_forest_tier1_pollution_only_pm25_h24.joblib"
+    },
+    {
+      "model_type": "xgboost",
+      "tier_name": "tier1_pollution_only",
+      "target_pollutant": "pm25",
+      "horizon": 24,
+      "train_samples": 504,
+      "test_samples": 108,
+      "train_metrics": {
+        "MAE": 0.404,
+        "RMSE": 0.528,
+        "R2": 0.9995,
+        "MAPE": 0.37
+      },
+      "val_metrics": {
+        "MAE": 14.752,
+        "RMSE": 16.42,
+        "R2": 0.0354,
+        "MAPE": 10.79
+      },
+      "test_metrics": {
+        "MAE": 41.083,
+        "RMSE": 48.278,
+        "R2": -0.3298,
+        "MAPE": 23.91
+      },
+      "artifact_path": "models/xgboost_tier1_pollution_only_pm25_h24.joblib"
+    },
+    {
+      "model_type": "persistence",
+      "tier_name": "tier2_pollution_and_weather",
+      "target_pollutant": "pm25",
+      "horizon": 24,
+      "train_samples": 504,
+      "test_samples": 108,
+      "train_metrics": {
+        "MAE": 13.424,
+        "RMSE": 17.141,
+        "R2": 0.4483,
+        "MAPE": 12.67
+      },
+      "val_metrics": {
+        "MAE": 17.675,
+        "RMSE": 21.07,
+        "R2": -0.5882,
+        "MAPE": 12.57
+      },
+      "test_metrics": {
+        "MAE": 39.469,
+        "RMSE": 42.892,
+        "R2": -0.0496,
+        "MAPE": 24.71
+      },
+      "artifact_path": "models/persistence_tier2_pollution_and_weather_pm25_h24.joblib"
+    },
+    {
+      "model_type": "random_forest",
+      "tier_name": "tier2_pollution_and_weather",
+      "target_pollutant": "pm25",
+      "horizon": 24,
+      "train_samples": 504,
+      "test_samples": 108,
+      "train_metrics": {
+        "MAE": 0.94,
+        "RMSE": 1.442,
+        "R2": 0.9961,
+        "MAPE": 0.88
+      },
+      "val_metrics": {
+        "MAE": 15.417,
+        "RMSE": 17.754,
+        "R2": -0.1277,
+        "MAPE": 11.14
+      },
+      "test_metrics": {
+        "MAE": 43.447,
+        "RMSE": 48.349,
+        "R2": -0.3337,
+        "MAPE": 26.67
+      },
+      "artifact_path": "models/random_forest_tier2_pollution_and_weather_pm25_h24.joblib"
+    },
+    {
+      "model_type": "xgboost",
+      "tier_name": "tier2_pollution_and_weather",
+      "target_pollutant": "pm25",
+      "horizon": 24,
+      "train_samples": 504,
+      "test_samples": 108,
+      "train_metrics": {
+        "MAE": 0.507,
+        "RMSE": 0.68,
+        "R2": 0.9991,
+        "MAPE": 0.47
+      },
+      "val_metrics": {
+        "MAE": 16.177,
+        "RMSE": 18.567,
+        "R2": -0.2332,
+        "MAPE": 11.7
+      },
+      "test_metrics": {
+        "MAE": 44.606,
+        "RMSE": 50.67,
+        "R2": -0.4649,
+        "MAPE": 26.88
+      },
+      "artifact_path": "models/xgboost_tier2_pollution_and_weather_pm25_h24.joblib"
+    },
+    {
+      "model_type": "persistence",
+      "tier_name": "tier3_coupled_atmospheric",
+      "target_pollutant": "pm25",
+      "horizon": 24,
+      "train_samples": 504,
+      "test_samples": 108,
+      "train_metrics": {
+        "MAE": 13.424,
+        "RMSE": 17.141,
+        "R2": 0.4483,
+        "MAPE": 12.67
+      },
+      "val_metrics": {
+        "MAE": 17.675,
+        "RMSE": 21.07,
+        "R2": -0.5882,
+        "MAPE": 12.57
+      },
+      "test_metrics": {
+        "MAE": 39.469,
+        "RMSE": 42.892,
+        "R2": -0.0496,
+        "MAPE": 24.71
+      },
+      "artifact_path": "models/persistence_tier3_coupled_atmospheric_pm25_h24.joblib"
+    },
+    {
+      "model_type": "random_forest",
+      "tier_name": "tier3_coupled_atmospheric",
+      "target_pollutant": "pm25",
+      "horizon": 24,
+      "train_samples": 504,
+      "test_samples": 108,
+      "train_metrics": {
+        "MAE": 0.93,
+        "RMSE": 1.451,
+        "R2": 0.996,
+        "MAPE": 0.87
+      },
+      "val_metrics": {
+        "MAE": 15.407,
+        "RMSE": 17.636,
+        "R2": -0.1127,
+        "MAPE": 11.16
+      },
+      "test_metrics": {
+        "MAE": 43.18,
+        "RMSE": 48.252,
+        "R2": -0.3284,
+        "MAPE": 26.41
+      },
+      "artifact_path": "models/random_forest_tier3_coupled_atmospheric_pm25_h24.joblib"
+    },
+    {
+      "model_type": "xgboost",
+      "tier_name": "tier3_coupled_atmospheric",
+      "target_pollutant": "pm25",
+      "horizon": 24,
+      "train_samples": 504,
+      "test_samples": 108,
+      "train_metrics": {
+        "MAE": 0.511,
+        "RMSE": 0.686,
+        "R2": 0.9991,
+        "MAPE": 0.47
+      },
+      "val_metrics": {
+        "MAE": 15.555,
+        "RMSE": 17.889,
+        "R2": -0.1448,
+        "MAPE": 11.21
+      },
+      "test_metrics": {
+        "MAE": 42.82,
+        "RMSE": 49.214,
+        "R2": -0.3819,
+        "MAPE": 25.49
+      },
+      "artifact_path": "models/xgboost_tier3_coupled_atmospheric_pm25_h24.joblib"
+    },
+    {
+      "model_type": "persistence",
+      "tier_name": "tier1_pollution_only",
+      "target_pollutant": "pm25",
+      "horizon": 48,
+      "train_samples": 402,
+      "test_samples": 90,
+      "train_metrics": {
+        "MAE": 15.106,
+        "RMSE": 18.884,
+        "R2": 0.3618,
+        "MAPE": 14.14
+      },
+      "val_metrics": {
+        "MAE": 16.196,
+        "RMSE": 17.321,
+        "R2": -0.2576,
+        "MAPE": 13.16
+      },
+      "test_metrics": {
+        "MAE": 50.29,
+        "RMSE": 54.235,
+        "R2": -0.7031,
+        "MAPE": 30.37
+      },
+      "artifact_path": "models/persistence_tier1_pollution_only_pm25_h48.joblib"
+    },
+    {
+      "model_type": "random_forest",
+      "tier_name": "tier1_pollution_only",
+      "target_pollutant": "pm25",
+      "horizon": 48,
+      "train_samples": 402,
+      "test_samples": 90,
+      "train_metrics": {
+        "MAE": 0.506,
+        "RMSE": 0.732,
+        "R2": 0.999,
+        "MAPE": 0.45
+      },
+      "val_metrics": {
+        "MAE": 15.059,
+        "RMSE": 17.175,
+        "R2": -0.2364,
+        "MAPE": 11.58
+      },
+      "test_metrics": {
+        "MAE": 47.493,
+        "RMSE": 52.865,
+        "R2": -0.6182,
+        "MAPE": 27.58
+      },
+      "artifact_path": "models/random_forest_tier1_pollution_only_pm25_h48.joblib"
+    },
+    {
+      "model_type": "xgboost",
+      "tier_name": "tier1_pollution_only",
+      "target_pollutant": "pm25",
+      "horizon": 48,
+      "train_samples": 402,
+      "test_samples": 90,
+      "train_metrics": {
+        "MAE": 0.36,
+        "RMSE": 0.471,
+        "R2": 0.9996,
+        "MAPE": 0.33
+      },
+      "val_metrics": {
+        "MAE": 14.217,
+        "RMSE": 16.684,
+        "R2": -0.1667,
+        "MAPE": 10.81
+      },
+      "test_metrics": {
+        "MAE": 46.967,
+        "RMSE": 53.354,
+        "R2": -0.6483,
+        "MAPE": 26.75
+      },
+      "artifact_path": "models/xgboost_tier1_pollution_only_pm25_h48.joblib"
+    },
+    {
+      "model_type": "persistence",
+      "tier_name": "tier2_pollution_and_weather",
+      "target_pollutant": "pm25",
+      "horizon": 48,
+      "train_samples": 402,
+      "test_samples": 90,
+      "train_metrics": {
+        "MAE": 15.106,
+        "RMSE": 18.884,
+        "R2": 0.3618,
+        "MAPE": 14.14
+      },
+      "val_metrics": {
+        "MAE": 16.196,
+        "RMSE": 17.321,
+        "R2": -0.2576,
+        "MAPE": 13.16
+      },
+      "test_metrics": {
+        "MAE": 50.29,
+        "RMSE": 54.235,
+        "R2": -0.7031,
+        "MAPE": 30.37
+      },
+      "artifact_path": "models/persistence_tier2_pollution_and_weather_pm25_h48.joblib"
+    },
+    {
+      "model_type": "random_forest",
+      "tier_name": "tier2_pollution_and_weather",
+      "target_pollutant": "pm25",
+      "horizon": 48,
+      "train_samples": 402,
+      "test_samples": 90,
+      "train_metrics": {
+        "MAE": 0.767,
+        "RMSE": 1.265,
+        "R2": 0.9971,
+        "MAPE": 0.69
+      },
+      "val_metrics": {
+        "MAE": 15.304,
+        "RMSE": 17.866,
+        "R2": -0.3379,
+        "MAPE": 12.04
+      },
+      "test_metrics": {
+        "MAE": 48.47,
+        "RMSE": 53.201,
+        "R2": -0.6389,
+        "MAPE": 28.36
+      },
+      "artifact_path": "models/random_forest_tier2_pollution_and_weather_pm25_h48.joblib"
+    },
+    {
+      "model_type": "xgboost",
+      "tier_name": "tier2_pollution_and_weather",
+      "target_pollutant": "pm25",
+      "horizon": 48,
+      "train_samples": 402,
+      "test_samples": 90,
+      "train_metrics": {
+        "MAE": 0.401,
+        "RMSE": 0.547,
+        "R2": 0.9995,
+        "MAPE": 0.36
+      },
+      "val_metrics": {
+        "MAE": 13.73,
+        "RMSE": 15.654,
+        "R2": -0.0272,
+        "MAPE": 10.76
+      },
+      "test_metrics": {
+        "MAE": 49.732,
+        "RMSE": 54.19,
+        "R2": -0.7004,
+        "MAPE": 29.5
+      },
+      "artifact_path": "models/xgboost_tier2_pollution_and_weather_pm25_h48.joblib"
+    },
+    {
+      "model_type": "persistence",
+      "tier_name": "tier3_coupled_atmospheric",
+      "target_pollutant": "pm25",
+      "horizon": 48,
+      "train_samples": 402,
+      "test_samples": 90,
+      "train_metrics": {
+        "MAE": 15.106,
+        "RMSE": 18.884,
+        "R2": 0.3618,
+        "MAPE": 14.14
+      },
+      "val_metrics": {
+        "MAE": 16.196,
+        "RMSE": 17.321,
+        "R2": -0.2576,
+        "MAPE": 13.16
+      },
+      "test_metrics": {
+        "MAE": 50.29,
+        "RMSE": 54.235,
+        "R2": -0.7031,
+        "MAPE": 30.37
+      },
+      "artifact_path": "models/persistence_tier3_coupled_atmospheric_pm25_h48.joblib"
+    },
+    {
+      "model_type": "random_forest",
+      "tier_name": "tier3_coupled_atmospheric",
+      "target_pollutant": "pm25",
+      "horizon": 48,
+      "train_samples": 402,
+      "test_samples": 90,
+      "train_metrics": {
+        "MAE": 0.733,
+        "RMSE": 1.22,
+        "R2": 0.9973,
+        "MAPE": 0.66
+      },
+      "val_metrics": {
+        "MAE": 15.049,
+        "RMSE": 17.737,
+        "R2": -0.3187,
+        "MAPE": 11.89
+      },
+      "test_metrics": {
+        "MAE": 48.038,
+        "RMSE": 52.787,
+        "R2": -0.6134,
+        "MAPE": 28.04
+      },
+      "artifact_path": "models/random_forest_tier3_coupled_atmospheric_pm25_h48.joblib"
+    },
+    {
+      "model_type": "xgboost",
+      "tier_name": "tier3_coupled_atmospheric",
+      "target_pollutant": "pm25",
+      "horizon": 48,
+      "train_samples": 402,
+      "test_samples": 90,
+      "train_metrics": {
+        "MAE": 0.385,
+        "RMSE": 0.524,
+        "R2": 0.9995,
+        "MAPE": 0.35
+      },
+      "val_metrics": {
+        "MAE": 13.908,
+        "RMSE": 15.838,
+        "R2": -0.0515,
+        "MAPE": 10.88
+      },
+      "test_metrics": {
+        "MAE": 49.758,
+        "RMSE": 54.183,
+        "R2": -0.6999,
+        "MAPE": 29.46
+      },
+      "artifact_path": "models/xgboost_tier3_coupled_atmospheric_pm25_h48.joblib"
+    },
+    {
+      "model_type": "persistence",
+      "tier_name": "tier1_pollution_only",
+      "target_pollutant": "pm25",
+      "horizon": 72,
+      "train_samples": 300,
+      "test_samples": 66,
+      "train_metrics": {
+        "MAE": 18.18,
+        "RMSE": 22.938,
+        "R2": 0.0821,
+        "MAPE": 15.76
+      },
+      "val_metrics": {
+        "MAE": 15.045,
+        "RMSE": 18.315,
+        "R2": 0.3139,
+        "MAPE": 11.21
+      },
+      "test_metrics": {
+        "MAE": 43.432,
+        "RMSE": 47.458,
+        "R2": -2.624,
+        "MAPE": 22.88
+      },
+      "artifact_path": "models/persistence_tier1_pollution_only_pm25_h72.joblib"
+    },
+    {
+      "model_type": "random_forest",
+      "tier_name": "tier1_pollution_only",
+      "target_pollutant": "pm25",
+      "horizon": 72,
+      "train_samples": 300,
+      "test_samples": 66,
+      "train_metrics": {
+        "MAE": 0.736,
+        "RMSE": 1.173,
+        "R2": 0.9976,
+        "MAPE": 0.7
+      },
+      "val_metrics": {
+        "MAE": 15.986,
+        "RMSE": 19.31,
+        "R2": 0.2373,
+        "MAPE": 12.73
+      },
+      "test_metrics": {
+        "MAE": 53.615,
+        "RMSE": 55.548,
+        "R2": -3.9647,
+        "MAPE": 28.97
+      },
+      "artifact_path": "models/random_forest_tier1_pollution_only_pm25_h72.joblib"
+    },
+    {
+      "model_type": "xgboost",
+      "tier_name": "tier1_pollution_only",
+      "target_pollutant": "pm25",
+      "horizon": 72,
+      "train_samples": 300,
+      "test_samples": 66,
+      "train_metrics": {
+        "MAE": 0.36,
+        "RMSE": 0.479,
+        "R2": 0.9996,
+        "MAPE": 0.34
+      },
+      "val_metrics": {
+        "MAE": 12.962,
+        "RMSE": 15.513,
+        "R2": 0.5078,
+        "MAPE": 10.06
+      },
+      "test_metrics": {
+        "MAE": 53.791,
+        "RMSE": 55.84,
+        "R2": -4.0171,
+        "MAPE": 29.02
+      },
+      "artifact_path": "models/xgboost_tier1_pollution_only_pm25_h72.joblib"
+    },
+    {
+      "model_type": "persistence",
+      "tier_name": "tier2_pollution_and_weather",
+      "target_pollutant": "pm25",
+      "horizon": 72,
+      "train_samples": 300,
+      "test_samples": 66,
+      "train_metrics": {
+        "MAE": 18.18,
+        "RMSE": 22.938,
+        "R2": 0.0821,
+        "MAPE": 15.76
+      },
+      "val_metrics": {
+        "MAE": 15.045,
+        "RMSE": 18.315,
+        "R2": 0.3139,
+        "MAPE": 11.21
+      },
+      "test_metrics": {
+        "MAE": 43.432,
+        "RMSE": 47.458,
+        "R2": -2.624,
+        "MAPE": 22.88
+      },
+      "artifact_path": "models/persistence_tier2_pollution_and_weather_pm25_h72.joblib"
+    },
+    {
+      "model_type": "random_forest",
+      "tier_name": "tier2_pollution_and_weather",
+      "target_pollutant": "pm25",
+      "horizon": 72,
+      "train_samples": 300,
+      "test_samples": 66,
+      "train_metrics": {
+        "MAE": 0.835,
+        "RMSE": 1.317,
+        "R2": 0.997,
+        "MAPE": 0.8
+      },
+      "val_metrics": {
+        "MAE": 18.672,
+        "RMSE": 21.99,
+        "R2": 0.0109,
+        "MAPE": 14.89
+      },
+      "test_metrics": {
+        "MAE": 54.555,
+        "RMSE": 56.488,
+        "R2": -4.1342,
+        "MAPE": 29.46
+      },
+      "artifact_path": "models/random_forest_tier2_pollution_and_weather_pm25_h72.joblib"
+    },
+    {
+      "model_type": "xgboost",
+      "tier_name": "tier2_pollution_and_weather",
+      "target_pollutant": "pm25",
+      "horizon": 72,
+      "train_samples": 300,
+      "test_samples": 66,
+      "train_metrics": {
+        "MAE": 0.43,
+        "RMSE": 0.587,
+        "R2": 0.9994,
+        "MAPE": 0.4
+      },
+      "val_metrics": {
+        "MAE": 13.952,
+        "RMSE": 16.899,
+        "R2": 0.4159,
+        "MAPE": 10.8
+      },
+      "test_metrics": {
+        "MAE": 54.163,
+        "RMSE": 56.006,
+        "R2": -4.047,
+        "MAPE": 29.23
+      },
+      "artifact_path": "models/xgboost_tier2_pollution_and_weather_pm25_h72.joblib"
+    },
+    {
+      "model_type": "persistence",
+      "tier_name": "tier3_coupled_atmospheric",
+      "target_pollutant": "pm25",
+      "horizon": 72,
+      "train_samples": 300,
+      "test_samples": 66,
+      "train_metrics": {
+        "MAE": 18.18,
+        "RMSE": 22.938,
+        "R2": 0.0821,
+        "MAPE": 15.76
+      },
+      "val_metrics": {
+        "MAE": 15.045,
+        "RMSE": 18.315,
+        "R2": 0.3139,
+        "MAPE": 11.21
+      },
+      "test_metrics": {
+        "MAE": 43.432,
+        "RMSE": 47.458,
+        "R2": -2.624,
+        "MAPE": 22.88
+      },
+      "artifact_path": "models/persistence_tier3_coupled_atmospheric_pm25_h72.joblib"
+    },
+    {
+      "model_type": "random_forest",
+      "tier_name": "tier3_coupled_atmospheric",
+      "target_pollutant": "pm25",
+      "horizon": 72,
+      "train_samples": 300,
+      "test_samples": 66,
+      "train_metrics": {
+        "MAE": 0.837,
+        "RMSE": 1.31,
+        "R2": 0.997,
+        "MAPE": 0.8
+      },
+      "val_metrics": {
+        "MAE": 18.318,
+        "RMSE": 21.382,
+        "R2": 0.0649,
+        "MAPE": 14.66
+      },
+      "test_metrics": {
+        "MAE": 54.132,
+        "RMSE": 56.014,
+        "R2": -4.0484,
+        "MAPE": 29.24
+      },
+      "artifact_path": "models/random_forest_tier3_coupled_atmospheric_pm25_h72.joblib"
+    },
+    {
+      "model_type": "xgboost",
+      "tier_name": "tier3_coupled_atmospheric",
+      "target_pollutant": "pm25",
+      "horizon": 72,
+      "train_samples": 300,
+      "test_samples": 66,
+      "train_metrics": {
+        "MAE": 0.42,
+        "RMSE": 0.573,
+        "R2": 0.9994,
+        "MAPE": 0.39
+      },
+      "val_metrics": {
+        "MAE": 15.395,
+        "RMSE": 18.248,
+        "R2": 0.3189,
+        "MAPE": 12.05
+      },
+      "test_metrics": {
+        "MAE": 54.655,
+        "RMSE": 56.746,
+        "R2": -4.1812,
+        "MAPE": 29.43
+      },
+      "artifact_path": "models/xgboost_tier3_coupled_atmospheric_pm25_h72.joblib"
+    }
+  ]
+}

@@ -15,10 +15,24 @@ from src.explainability.plots import (
 )
 
 
+# Resolve project root relative to this file - works on Streamlit Cloud and locally
+_VIEW_DIR = Path(__file__).resolve().parent          # src/ui/views/
+_PROJECT_ROOT = _VIEW_DIR.parent.parent.parent       # project root
+
+
+def _find_artifact(relative: str) -> Path:
+    """Return first existing candidate: project-root/relative or cwd/relative."""
+    p1 = _PROJECT_ROOT / relative
+    p2 = Path(relative)
+    return p1 if p1.exists() else p2
+
+
 @st.cache_resource
 def get_cached_explainer():
     """Loads and caches the ModelExplainer for the 48h XGBoost Tier 2 model."""
-    artifact_path = Path("models/xgboost_tier2_pollution_and_weather_pm25_h48.joblib")
+    artifact_path = _find_artifact(
+        "models/xgboost_tier2_pollution_and_weather_pm25_h48.joblib"
+    )
     if not artifact_path.exists():
         return None
     return ModelExplainer(artifact_path)

@@ -9,6 +9,17 @@ import streamlit as st
 
 from src.evaluation.plots import plot_model_comparison_bars, plot_horizon_error_trajectory
 
+# Resolve project root relative to this file - works on Streamlit Cloud and locally
+_VIEW_DIR = Path(__file__).resolve().parent          # src/ui/views/
+_PROJECT_ROOT = _VIEW_DIR.parent.parent.parent       # project root
+
+
+def _find_path(relative: str) -> Path:
+    """Return first existing candidate: project-root/relative or cwd/relative."""
+    p1 = _PROJECT_ROOT / relative
+    p2 = Path(relative)
+    return p1 if p1.exists() else p2
+
 
 def render_performance_view():
     """
@@ -27,7 +38,7 @@ def render_performance_view():
     )
 
     # Load model registry
-    reg_path = Path("models/model_registry.json")
+    reg_path = _find_path("models/model_registry.json")
     if not reg_path.exists():
         st.warning("Model registry not found. Run Phase 5/6 training pipelines.")
         return
