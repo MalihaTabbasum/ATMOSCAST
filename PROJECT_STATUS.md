@@ -3,39 +3,48 @@
 ## Project Overview
 **AtmosCast — Weather-Aware Air Pollution Forecasting System (Delhi NCR Focus)**  
 *Based on SIH Problem Statement SIH26082: Air Pollution–Weather Coupled Forecasting System.*  
-AtmosCast is an end-to-end Machine Learning and environmental intelligence platform designed to forecast air pollutants (`PM2.5`, `PM10`, `O3`, `NO2`) over 24, 48, and 72-hour horizons across Delhi NCR monitoring stations by coupling historical pollution trends with boundary-layer meteorology, atmospheric inversion indicators, and regional agricultural stubble fire activity.
+AtmosCast is an end-to-end Machine Learning and atmospheric intelligence platform designed to forecast air pollutants (`PM2.5`, `PM10`, `O3`, `NO2`) over 24, 48, and 72-hour horizons across Delhi NCR monitoring stations by coupling historical pollution trends with boundary-layer meteorology, atmospheric inversion indicators, and regional agricultural stubble fire activity.
 
 ---
 
-## Phase Status Summary
+## 12-Phase Development Roadmap
 
-- **WORKSPACE INITIALIZATION**: COMPLETED
-- **PHASE 01: PENDING** — Real-World Data Collection & API Integration Pipeline
-- **PHASE 02: PENDING** — Preprocessing, Time-Series Harmonization & Leakage-Safe Imputation
-- **PHASE 03: PENDING** — Atmospheric & Meteorological Feature Engineering (PBL, Inversion, Fires)
-- **PHASE 04: PENDING** — Multi-Horizon ML Model Development (Persistence, RF, XGBoost)
-- **PHASE 05: PENDING** — Rigorous Horizon & Seasonal Evaluation with Ablation Benchmarks
-- **PHASE 06: PENDING** — Explainable AI (SHAP & Atmospheric Drivers Analysis)
-- **PHASE 07: PENDING** — Modern Environmental Intelligence Dashboard (Streamlit UI/UX)
-- **PHASE 08: PENDING** — End-to-End Testing, CI/CD, Documentation & Deployment
+| Phase | Phase Name | Status |
+|---|---|---|
+| **PHASE 01** | **Project Initialization & Architecture Setup** | **COMPLETED** |
+| **PHASE 02** | **Multi-Agency Data Ingestion & API Pipelines** | **PENDING** |
+| **PHASE 03** | **Data Harmonization, Time-Series Alignment & Quality Control** | **PENDING** |
+| **PHASE 04** | **Boundary-Layer Meteorology & Atmospheric Feature Engineering** | **PENDING** |
+| **PHASE 05** | **Exploratory Data Analysis & Airshed Episodic Profiling** | **PENDING** |
+| **PHASE 06** | **Baseline Forecasting Models & ML Architecture Setup** | **PENDING** |
+| **PHASE 07** | **Gradient-Boosted Multi-Horizon Forecasting Engine (24h, 48h, 72h)** | **PENDING** |
+| **PHASE 08** | **Rigorous Horizon-Wise & Seasonal Validation Benchmarking** | **PENDING** |
+| **PHASE 09** | **Coupled Atmospheric Feature Ablation Experiments** | **PENDING** |
+| **PHASE 10** | **Explainable AI & Atmospheric Sensitivity (SHAP Analysis)** | **PENDING** |
+| **PHASE 11** | **Interactive Environmental Intelligence Dashboard (Streamlit UI/UX)** | **PENDING** |
+| **PHASE 12** | **Deployment Readiness, Cloud Packaging & GitHub Finalization** | **PENDING** |
 
 ---
 
 ## Current Status Details
 
-- **Current Phase**: WORKSPACE INITIALIZATION (Ready for Phase 1)
-- **Current Task**: Completed repository scaffolding, directory architecture, YAML configuration, dependency specifications, project documentation, unit tests, and Streamlit application entry point.
+- **Current Phase**: PHASE 01: Project Initialization & Architecture Setup
+- **Phase 01 Status**: **COMPLETED**
+- **Current Task**: Completed modular directory scaffolding, virtual environment setup (`.venv`), dependency pinning and installation, `.gitignore`, `.env.example`, `config/settings.yaml`, configuration loader with path safety, Streamlit application shell with progress tracking, and pytest test suite.
 - **Completed Phases**:
-  - [x] Workspace Initialization & Foundation Architecture
+  - [x] **PHASE 01: Project Initialization & Architecture Setup**
 - **Pending Phases**:
-  - [ ] Phase 01: Real-World Data Collection & Validation Pipeline
-  - [ ] Phase 02: Preprocessing, Data Integrity & Time-Series Alignment
-  - [ ] Phase 03: Feature Engineering & Coupled Atmospheric Indicators
-  - [ ] Phase 04: Model Training (Persistence, Random Forest, XGBoost)
-  - [ ] Phase 05: Evaluation, Multi-Horizon Metrics & Ablation Experiments
-  - [ ] Phase 06: Explainability Pipeline (SHAP & Feature Contributions)
-  - [ ] Phase 07: Interactive Streamlit Dashboard Implementation
-  - [ ] Phase 08: Deployment Preparation & Verification
+  - [ ] PHASE 02: Multi-Agency Data Ingestion & API Pipelines
+  - [ ] PHASE 03: Data Harmonization, Time-Series Alignment & Quality Control
+  - [ ] PHASE 04: Boundary-Layer Meteorology & Atmospheric Feature Engineering
+  - [ ] PHASE 05: Exploratory Data Analysis & Airshed Episodic Profiling
+  - [ ] PHASE 06: Baseline Forecasting Models & ML Architecture Setup
+  - [ ] PHASE 07: Gradient-Boosted Multi-Horizon Forecasting Engine (24h, 48h, 72h)
+  - [ ] PHASE 08: Rigorous Horizon-Wise & Seasonal Validation Benchmarking
+  - [ ] PHASE 09: Coupled Atmospheric Feature Ablation Experiments
+  - [ ] PHASE 10: Explainable AI & Atmospheric Sensitivity (SHAP Analysis)
+  - [ ] PHASE 11: Interactive Environmental Intelligence Dashboard (Streamlit UI/UX)
+  - [ ] PHASE 12: Deployment Readiness, Cloud Packaging & GitHub Finalization
 
 ---
 
@@ -43,57 +52,63 @@ AtmosCast is an end-to-end Machine Learning and environmental intelligence platf
 
 | File / Path | Purpose |
 |---|---|
-| `requirements.txt` | Pinned project dependencies (Streamlit, Plotly, Pandas, XGBoost, SHAP, Pytest) |
-| `.gitignore` | Ignores cache, virtualenvs, local data (raw/processed), secrets, and models |
-| `.env.example` | Template for OpenAQ, NASA FIRMS, and CPCB credentials |
-| `config/settings.yaml` | Master project settings (stations, pollutants, API endpoints, horizons, UI theme) |
-| `src/utils/config.py` | Configuration loader supporting environment variable injection and validation |
-| `src/data_collection/__init__.py` | Package definition for multi-source data ingestion |
-| `src/preprocessing/__init__.py` | Package definition for cleaning and time alignment |
-| `src/features/__init__.py` | Package definition for meteorological and temporal feature generation |
-| `src/models/__init__.py` | Package definition for ML model architectures |
-| `src/forecasting/__init__.py` | Package definition for multi-horizon forecast pipelines |
-| `src/evaluation/__init__.py` | Package definition for metrics (MAE, RMSE, R2) and ablation |
-| `src/explainability/__init__.py` | Package definition for SHAP interpretability |
-| `src/utils/__init__.py` | Package definition for shared project utilities |
-| `data/README.md` | Data organization, licensing, and reproducibility documentation |
-| `app.py` | Streamlit entry point with modern navigation layout and theme settings |
-| `tests/test_project_setup.py` | Unit tests for project structure, configuration validity, and station bounds |
-| `README.md` | Comprehensive interview-ready GitHub documentation |
-| `PROJECT_STATUS.md` | Official phase tracking and status log |
+| `requirements.txt` | Pinned project dependencies (Streamlit, Plotly, Pandas, NumPy, Scikit-learn, XGBoost, SHAP, Pytest) |
+| `.gitignore` | Excludes cache, virtual environment, raw/processed data, models, reports, and secrets |
+| `.env.example` | Environment credentials template for OpenAQ, NASA FIRMS, and CPCB APIs |
+| `.streamlit/config.toml` | Streamlit server and browser configurations (headless mode, usage stats disabled) |
+| `.streamlit/credentials.toml` | Local Streamlit credentials stub preventing interactive email prompts |
+| `config/settings.yaml` | Master project settings (stations, pollutants, API routes, forecast horizons, UI design tokens) |
+| `src/utils/config.py` | Configuration reader with pathlib resolution and environment variable injection |
+| `src/__init__.py` | AtmosCast package root |
+| `src/data_collection/__init__.py` | Multi-agency data collection package |
+| `src/preprocessing/__init__.py` | Harmonization and preprocessing package |
+| `src/features/__init__.py` | Meteorological and atmospheric feature engineering package |
+| `src/models/__init__.py` | Model architectures package |
+| `src/forecasting/__init__.py` | Multi-horizon inference engine package |
+| `src/evaluation/__init__.py` | Validation metrics and ablation benchmarks package |
+| `src/explainability/__init__.py` | Explainable AI (SHAP) package |
+| `src/utils/__init__.py` | Shared utilities package |
+| `data/README.md` | Data management, licensing, and reproducibility documentation |
+| `app.py` | Streamlit application shell with navy/teal styling, progress tracker, and elegant empty-state cards |
+| `tests/__init__.py` | Test suite root package |
+| `tests/test_project_setup.py` | Test suite verifying folder structure, configuration, stations, and requirements |
+| `tests/test_app_startup.py` | AppTest suite verifying Streamlit layout, widgets, navigation, and exception handling |
+| `README.md` | Comprehensive GitHub project documentation and scientific overview |
+| `PROJECT_STATUS.md` | 12-phase tracking log and milestone audit |
 
 ---
 
 ## Data Sources Integrated
-*None yet. Integration will occur in Phase 1:*
+*None in Phase 1 (Scheduled for Phase 2 data ingestion pipeline):*
 - OpenAQ API v3 (Pollution measurements: PM2.5, PM10, O3, NO2)
 - Open-Meteo Historical & Forecast Weather API (Temperature, Humidity, Wind, Pressure, PBL Height)
-- CPCB India Portal (Validation benchmarks)
-- NASA FIRMS (VIIRS/MODIS active fire & FRP indicators)
+- CPCB India Portal (NAQI breakpoints and statutory reference limits)
+- NASA FIRMS (Active fires & FRP indicators)
 
 ---
 
 ## Models Implemented
-*None yet. Scheduled for Phase 4:*
-- [ ] Persistence Baseline
-- [ ] Random Forest Regressor
-- [ ] XGBoost Multi-Horizon Regressor
+*None in Phase 1 (Scheduled for Phases 6 & 7):*
+- Persistence Forecasting Baseline
+- Random Forest Regressor
+- XGBoost Multi-Horizon Regressor
 
 ---
 
 ## Test Results
-- **Framework**: `unittest` / `pytest`
-- **Tests Created**: `tests/test_project_setup.py`
-- **Tests Passed**: 6 / 6
+- **Test Runner**: `pytest 9.2.0` (in `.venv`)
+- **Tests Executed**:
+  - `tests/test_project_setup.py`: 7 tests passed
+  - `tests/test_app_startup.py`: 4 tests passed
+- **Total Tests Passed**: 11 / 11 (100%)
 - **Tests Failed**: 0
 
 ---
 
 ## Known Errors & Remaining Issues
-- None at this stage. Workspace scaffolding is clean and validated.
-- Optional dependencies (e.g. `xgboost`, `shap`, `plotly`) are documented in `requirements.txt` and will be utilized during their respective implementation phases.
+- None. Virtual environment `.venv` is configured, dependencies installed, test suite passing (11/11), and Streamlit shell fully operational.
 
 ---
 
 ## Next Recommended Action
-Wait for the user's explicit instruction to start **Phase 1: Real-World Data Collection & API Integration Pipeline**.
+Awaiting user approval to proceed to **PHASE 02: Multi-Agency Data Ingestion & API Pipelines**.
