@@ -1,0 +1,253 @@
+# AtmosCast Project Configuration
+# Weather-Aware Air Pollution Forecasting System (Delhi NCR Focus)
+
+project:
+  name: "AtmosCast"
+  version: "1.0.0"
+  description: "Weather-Aware Air Pollution Forecasting System (SIH26082)"
+  region: "Delhi NCR, India"
+  timezone: "Asia/Kolkata"
+
+# Delhi NCR Air Quality Monitoring Stations
+# Real CPCB/DPCC/HSPCB/UPPCB stations with verified geographic coordinates
+stations:
+  - id: "delhi_anand_vihar"
+    name: "Anand Vihar"
+    city: "Delhi"
+    state: "Delhi"
+    authority: "DPCC"
+    latitude: 28.6469
+    longitude: 77.3160
+    description: "Major transport hub and commercial hotspot in East Delhi"
+    is_active: true
+
+  - id: "delhi_rk_puram"
+    name: "R K Puram"
+    city: "Delhi"
+    state: "Delhi"
+    authority: "DPCC"
+    latitude: 28.5632
+    longitude: 77.1869
+    description: "High-density residential and administrative area in South Delhi"
+    is_active: true
+
+  - id: "delhi_punjabi_bagh"
+    name: "Punjabi Bagh"
+    city: "Delhi"
+    state: "Delhi"
+    authority: "DPCC"
+    latitude: 28.6740
+    longitude: 77.1310
+    description: "Mixed residential-commercial zone in West Delhi"
+    is_active: true
+
+  - id: "delhi_igi_airport"
+    name: "IGI Airport (T3)"
+    city: "Delhi"
+    state: "Delhi"
+    authority: "IMD"
+    latitude: 28.5562
+    longitude: 77.0999
+    description: "Aviation hub and semi-open suburban corridor in Southwest Delhi"
+    is_active: true
+
+  - id: "noida_sector_62"
+    name: "Sector 62, Noida"
+    city: "Noida"
+    state: "Uttar Pradesh"
+    authority: "UPPCB"
+    latitude: 28.6245
+    longitude: 77.3648
+    description: "Institutional and IT cluster in eastern NCR"
+    is_active: true
+
+  - id: "gurugram_vikas_sadan"
+    name: "Vikas Sadan, Gurugram"
+    city: "Gurugram"
+    state: "Haryana"
+    authority: "HSPCB"
+    latitude: 28.4501
+    longitude: 77.0263
+    description: "Urban commercial and civic administrative center in southwestern NCR"
+    is_active: true
+
+# Regional bounding box for Delhi NCR & Upwind Agricultural Stubble Fire Zone
+geography:
+  delhi_ncr_bounds:
+    min_lat: 28.20
+    max_lat: 28.90
+    min_lon: 76.80
+    max_lon: 77.60
+  upwind_fire_corridor_bounds: # Punjab and Haryana northwest corridor
+    min_lat: 29.50
+    max_lat: 32.50
+    min_lon: 74.00
+    max_lon: 77.00
+
+# Monitored Atmospheric Pollutants
+pollutants:
+  primary_target: "PM2.5"
+  monitored:
+    - code: "pm25"
+      name: "PM2.5"
+      unit: "µg/m³"
+      cpcb_std_24h: 60.0
+      description: "Fine Particulate Matter <= 2.5 µm"
+
+    - code: "pm10"
+      name: "PM10"
+      unit: "µg/m³"
+      cpcb_std_24h: 100.0
+      description: "Coarse Particulate Matter <= 10 µm"
+
+    - code: "o3"
+      name: "Ozone"
+      unit: "µg/m³"
+      cpcb_std_8h: 100.0
+      description: "Ground-Level Ozone (O3)"
+
+    - code: "no2"
+      name: "Nitrogen Dioxide"
+      unit: "µg/m³"
+      cpcb_std_24h: 80.0
+      description: "Nitrogen Dioxide (NO2)"
+
+    - code: "so2"
+      name: "Sulphur Dioxide"
+      unit: "µg/m³"
+      cpcb_std_24h: 80.0
+      description: "Sulphur Dioxide (SO2)"
+
+    - code: "co"
+      name: "Carbon Monoxide"
+      unit: "mg/m³"
+      cpcb_std_8h: 2.0
+      description: "Carbon Monoxide (CO)"
+
+# Indian CPCB National Air Quality Index (NAQI) Breakpoints
+cpcb_aqi_scale:
+  categories:
+    - name: "Good"
+      range: [0, 50]
+      color: "#22C55E"
+      health_impact: "Minimal impact on health"
+    - name: "Satisfactory"
+      range: [51, 100]
+      color: "#84CC16"
+      health_impact: "Minor breathing discomfort to sensitive people"
+    - name: "Moderate"
+      range: [101, 200]
+      color: "#EAB308"
+      health_impact: "Breathing discomfort to people with lungs, asthma, and heart diseases"
+    - name: "Poor"
+      range: [201, 300]
+      color: "#F97316"
+      health_impact: "Breathing discomfort to most people on prolonged exposure"
+    - name: "Very Poor"
+      range: [301, 400]
+      color: "#EF4444"
+      health_impact: "Respiratory illness on prolonged exposure"
+    - name: "Severe"
+      range: [401, 500]
+      color: "#7F1D1D"
+      health_impact: "Affects healthy people and seriously impacts those with existing diseases"
+
+# Meteorological Parameters (Open-Meteo API)
+meteorology:
+  hourly_parameters:
+    - "temperature_2m"
+    - "relative_humidity_2m"
+    - "dew_point_2m"
+    - "surface_pressure"
+    - "wind_speed_10m"
+    - "wind_direction_10m"
+    - "wind_gusts_10m"
+    - "precipitation"
+    - "boundary_layer_height"
+  derived_indicators:
+    - "ventilation_coefficient"      # PBL height * wind speed (m²/s)
+    - "atmospheric_inversion_proxy"   # Surface-boundary thermal gradient
+    - "stagnation_index"             # High pressure + low wind speed condition
+
+# Satellite Active Fire / Stubble Burning Indicators (NASA FIRMS)
+satellite_fire:
+  satellites: ["VIIRS_NOAA20_NRT", "VIIRS_SNPP_NRT", "MODIS_NRT"]
+  parameters:
+    - "fire_radiative_power"  # FRP (MW)
+    - "fire_count"            # Count of active thermal anomalies
+    - "confidence"            # Detection confidence percentage
+
+# Machine Learning & Forecasting Configuration
+forecasting:
+  horizons_hours: [24, 48, 72]
+  target_pollutant: "pm25"
+  baseline_models:
+    - "persistence"
+    - "random_forest"
+    - "xgboost"
+  experimental_models:
+    - "lstm"
+  train_val_test_split:
+    train_ratio: 0.70
+    val_ratio: 0.15
+    test_ratio: 0.15
+    method: "chronological" # Strict time-series split with no lookahead
+  feature_ablation_tiers:
+    - name: "tier1_pollution_only"
+      description: "Lagged and rolling pollution history features only"
+    - name: "tier2_pollution_and_weather"
+      description: "Pollution history combined with surface meteorological variables"
+    - name: "tier3_coupled_atmospheric"
+      description: "Pollution, surface weather, PBL height, inversion indicators, and regional fire indicators"
+  evaluation_metrics:
+    - "MAE"
+    - "RMSE"
+    - "R2"
+    - "MAPE"
+
+# Data Storage Paths
+paths:
+  data_raw: "data/raw"
+  data_processed: "data/processed"
+  data_external: "data/external"
+  models_dir: "models"
+  reports_dir: "reports"
+
+# External API Configuration
+api:
+  open_meteo_archive_url: "https://archive-api.open-meteo.com/v1/archive"
+  open_meteo_forecast_url: "https://api.open-meteo.com/v1/forecast"
+  openaq_v3_url: "https://api.openaq.org/v3"
+  nasa_firms_url: "https://firms.modaps.eosdis.nasa.gov/api/area/csv"
+  request_timeout_seconds: 15
+  max_retries: 3
+  backoff_factor: 1.5
+
+# UI Design System
+ui:
+  theme:
+    primary_color: "#0F172A"       # Deep Navy
+    secondary_color: "#0D9488"     # Teal
+    accent_color: "#14B8A6"        # Light Teal
+    background_color: "#F8FAFC"    # Light Neutral
+    card_background: "#FFFFFF"
+    text_color: "#1E293B"
+    muted_text: "#64748B"
+    border_color: "#E2E8F0"
+  pages:
+    - title: "Overview"
+      icon: "dashboard"
+    - title: "Live & Historical Air Quality"
+      icon: "activity"
+    - title: "72-Hour Forecast"
+      icon: "trending-up"
+    - title: "Weather Analysis"
+      icon: "cloud"
+    - title: "Pollution Episode Analysis"
+      icon: "alert-triangle"
+    - title: "Model Performance"
+      icon: "bar-chart-2"
+    - title: "Explainable AI"
+      icon: "eye"
+    - title: "Data Sources & Project Information"
+      icon: "info"
