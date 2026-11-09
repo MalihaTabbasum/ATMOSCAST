@@ -1,4 +1,8 @@
 """
-Evaluation Module
-Computes MAE, RMSE, R2, horizon-wise errors, seasonal breakdowns, and benchmark comparisons.
+Evaluation Package for AtmosCast.
 """
+
+from src.evaluation.evaluator import ModelEvaluator
+from src.evaluation.pipeline import EvaluationPipeline
+
+__all__ = ["ModelEvaluator", "EvaluationPipeline"]
