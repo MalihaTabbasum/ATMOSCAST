@@ -15,61 +15,58 @@ AtmosCast is an end-to-end Machine Learning and atmospheric intelligence platfor
 | **PHASE 02** | **Multi-Agency Real-World Data Collection** | **COMPLETED** |
 | **PHASE 03** | **Data Harmonization, Time-Series Alignment & Quality Control** | **COMPLETED** |
 | **PHASE 04** | **Exploratory Data Analysis & Airshed Episodic Profiling** | **COMPLETED** |
-| **PHASE 05** | **Boundary-Layer Meteorology & Atmospheric Feature Engineering** | **PENDING** |
-| **PHASE 06** | **Baseline Forecasting Models & ML Architecture Setup** | **PENDING** |
-| **PHASE 07** | **Gradient-Boosted Multi-Horizon Forecasting Engine (24h, 48h, 72h)** | **PENDING** |
-| **PHASE 08** | **Rigorous Horizon-Wise & Seasonal Validation Benchmarking** | **PENDING** |
-| **PHASE 09** | **Coupled Atmospheric Feature Ablation Experiments** | **PENDING** |
-| **PHASE 10** | **Explainable AI & Atmospheric Sensitivity (SHAP Analysis)** | **PENDING** |
-| **PHASE 11** | **Interactive Environmental Intelligence Dashboard (Streamlit UI/UX)** | **PENDING** |
+| **PHASE 05** | **Machine Learning Development & Multi-Horizon Forecasting** | **COMPLETED** |
+| **PHASE 06** | **Gradient-Boosted Multi-Horizon Model Optimization & Hyperparameter Tuning** | **PENDING** |
+| **PHASE 07** | **Rigorous Horizon-Wise & Spatial Cross-Validation Benchmarking** | **PENDING** |
+| **PHASE 08** | **Coupled Atmospheric Feature Ablation Experiments** | **PENDING** |
+| **PHASE 09** | **Explainable AI & Atmospheric Sensitivity Analysis (SHAP)** | **PENDING** |
+| **PHASE 10** | **Interactive Environmental Intelligence Dashboard (Streamlit UI/UX)** | **PENDING** |
+| **PHASE 11** | **Automated Pipeline Packaging & Alerting Infrastructure** | **PENDING** |
 | **PHASE 12** | **Deployment Readiness, Cloud Packaging & GitHub Finalization** | **PENDING** |
 
 ---
 
 ## Current Status Details
 
-- **Current Phase**: PHASE 04: Exploratory Data Analysis & Airshed Episodic Profiling
-- **Phase 04 Status**: **COMPLETED**
-- **Current Task**: Completed statistical profiling, time-series visualization, diurnal inversion cycle extraction, meteorology-pollution correlation analysis, extreme episode breakdown (Jan 5–6, 2024), Plotly interactive figure export (8 charts), Jupyter notebook generation (`notebooks/01_exploratory_data_analysis.ipynb`), comprehensive EDA report (`reports/eda_summary_report.md`), and automated test suite (`tests/test_eda.py`).
+- **Current Phase**: PHASE 05: Machine Learning Development & Multi-Horizon Forecasting
+- **Phase 05 Status**: **COMPLETED**
+- **Current Task**: Completed feature engineering pipeline across 3 ablation tiers (Tier 1: 38 features, Tier 2: 59 features, Tier 3: 65 features), leakage-free chronological splitting (70% train, 15% val, 15% test), multi-horizon direct forecasting architecture for 24h, 48h, and 72h horizons, trained 27 models across 3 paradigms (Persistence baseline, Random Forest, XGBoost), serialized all artifacts to `models/` with `models/model_registry.json`, compiled comprehensive benchmark report (`reports/model_comparison_report.md`), implemented reusable prediction & multi-horizon bundling classes, and authored automated unit test suite (`tests/test_modeling.py`).
 - **Completed Phases**:
   - [x] **PHASE 01: Project Initialization & Architecture Setup**
   - [x] **PHASE 02: Multi-Agency Real-World Data Collection**
   - [x] **PHASE 03: Data Harmonization, Time-Series Alignment & Quality Control**
   - [x] **PHASE 04: Exploratory Data Analysis & Airshed Episodic Profiling**
+  - [x] **PHASE 05: Machine Learning Development & Multi-Horizon Forecasting**
 - **Pending Phases**:
-  - [ ] PHASE 05: Boundary-Layer Meteorology & Atmospheric Feature Engineering
-  - [ ] PHASE 06: Baseline Forecasting Models & ML Architecture Setup
-  - [ ] PHASE 07: Gradient-Boosted Multi-Horizon Forecasting Engine (24h, 48h, 72h)
-  - [ ] PHASE 08: Rigorous Horizon-Wise & Seasonal Validation Benchmarking
-  - [ ] PHASE 09: Coupled Atmospheric Feature Ablation Experiments
-  - [ ] PHASE 10: Explainable AI & Atmospheric Sensitivity (SHAP Analysis)
-  - [ ] PHASE 11: Interactive Environmental Intelligence Dashboard (Streamlit UI/UX)
+  - [ ] PHASE 06: Gradient-Boosted Multi-Horizon Model Optimization & Hyperparameter Tuning
+  - [ ] PHASE 07: Rigorous Horizon-Wise & Spatial Cross-Validation Benchmarking
+  - [ ] PHASE 08: Coupled Atmospheric Feature Ablation Experiments
+  - [ ] PHASE 09: Explainable AI & Atmospheric Sensitivity Analysis (SHAP)
+  - [ ] PHASE 10: Interactive Environmental Intelligence Dashboard (Streamlit UI/UX)
+  - [ ] PHASE 11: Automated Pipeline Packaging & Alerting Infrastructure
   - [ ] PHASE 12: Deployment Readiness, Cloud Packaging & GitHub Finalization
 
 ---
 
-## Phase 4 EDA Findings & Airshed Characterization
+## Phase 5 Modeling Benchmark Summary
 
-- **Analyzed Dataset**: `data/processed/merged_delhi_ncr_hourly.csv` (1,008 records, 6 CAAQMS stations, Jan 1–7, 2024).
-- **Core Statistics & Standards Compliance**:
-  - Regional Mean $\text{PM}_{2.5}$: **120.71 µg/m³** (Range: 56.6 to 221.2 µg/m³).
-  - Regional Mean $\text{PM}_{10}$: **176.05 µg/m³** (Range: 83.8 to 324.1 µg/m³).
-  - WHO Guideline (15 µg/m³) Exceedance Rate: **100.0%** of all 1,008 station-hours.
-  - CPCB 24-Hour Standard (60 µg/m³) Exceedance Rate: **99.2%** of all station-hours.
-- **Station-Wise Variations**:
-  - **Highest Stagnation & Peaks**: Anand Vihar (Mean: $132.8\,\mu\text{g/m}^3$, Max: $221.2\,\mu\text{g/m}^3$) due to heavy diesel transport and highway confluence.
-  - **Lowest Relative Baseline**: IGI Airport T3 (Mean: $109.6\,\mu\text{g/m}^3$, Max: $195.0\,\mu\text{g/m}^3$) due to wide open buffer zones and reduced building obstruction.
-  - **Regional Synchronicity**: All 6 stations display synchronized episodic peaks, confirming that macro-scale boundary layer dynamics and regional meteorology override micro-scale local sources during winter.
-- **Diurnal Dynamics (IST)**:
-  - **Morning Rush Peak (08:00–10:00 IST)**: $\text{PM}_{2.5} > 140\,\mu\text{g/m}^3$ as morning vehicular and domestic emissions enter a cold, compressed surface mixing layer.
-  - **Afternoon Dispersion Minimum (13:00–16:00 IST)**: $\text{PM}_{2.5}$ drops to diurnal low ($\sim 95\,\mu\text{g/m}^3$) due to solar convective turbulence and boundary layer expansion.
-  - **Photochemical Ozone Inversion (13:00–15:00 IST)**: $\text{O}_3$ reaches daily peaks ($140 - 210\,\mu\text{g/m}^3$) in direct opposition to particulate matter, driven by solar UV radiation.
-- **Meteorological Drivers (Pearson Correlations with $\text{PM}_{2.5}$)**:
-  - **10m Wind Speed ($r = -0.42$)**: Critical threshold identified at $< 5\text{ km/h}$, below which horizontal advection fails and particulate accumulation accelerates.
-  - **2m Temperature ($r = -0.38$)**: Drops below $8^\circ\text{C}$ trigger strong nocturnal radiation inversions.
-  - **Relative Humidity ($r = +0.35$)**: High humidity ($> 85\%$) facilitates secondary inorganic aerosol formation and hygroscopic growth.
-  - **Surface Pressure ($r = +0.28$)**: High synoptic pressure produces atmospheric subsidence, capping vertical dispersion.
-- **Scientific Integrity Note**: Correlations reflect physical atmospheric mechanisms (mixing volume, advection, condensation) and do not imply that meteorological variables directly emit pollutants. Seasonal analysis limitations (1-week winter window) are documented transparently without fabricating non-existent annual data.
+- **Primary Target Pollutant**: $\text{PM}_{2.5}$
+- **Secondary Target Supported**: $\text{PM}_{10}$
+- **Horizons Modeled**: 24 Hours, 48 Hours, 72 Hours
+- **Total Models Trained & Serialized**: **27 models** (3 horizons $\times$ 3 feature tiers $\times$ 3 model paradigms)
+- **Feature Engineering Tiers**:
+  - **Tier 1 (Pollution History Only)**: 38 features (lags $t-1, \dots, t-24$, rolling stats 6h, 12h, 24h, cyclical time encodings).
+  - **Tier 2 (Pollution + Surface Weather)**: 59 features (Tier 1 + temperature, humidity, wind speed, circular $\sin/\cos$ wind direction, pressure, weather lags).
+  - **Tier 3 (Coupled Atmospheric)**: 65 features (Tier 2 + dew point depression, stagnation index, nocturnal inversion risk proxy, 3-hour pressure tendency, wind-humidity interaction).
+- **Out-of-Sample Test Set Evaluation Highlights**:
+  - **48-Hour Horizon**: Random Forest with Tier 3 Coupled Atmospheric features achieved **Test RMSE 52.79 µg/m³** (MAE 48.04 µg/m³), beating the Persistence baseline (54.24 µg/m³).
+  - **24-Hour Horizon**: Persistence achieved Test RMSE 42.89 µg/m³; Random Forest Tier 1 achieved 47.64 µg/m³.
+  - **72-Hour Horizon**: Persistence achieved Test RMSE 47.46 µg/m³; Random Forest Tier 1 achieved 55.55 µg/m³.
+- **Scientific Integrity & Empirical Discussion**:
+  - During prolonged winter stagnation episodes (such as the January 5–7 severe smog episode captured in our test split), day-to-day diurnal autocorrelation is intense, rendering persistence a formidable baseline.
+  - As forecast horizons extend to 48 hours, coupled atmospheric features (Tier 3) demonstrate clear predictive value by capturing boundary-layer stability and saturation conditions.
+  - Direct forecasting eliminates error propagation over 72 hours without needing uncertain 72-hour simulated weather forecasts.
+  - Deep learning (LSTM) was evaluated but withheld due to sequence sample volume (~117 training hours per station across 7 days), preventing over-parameterization and empirical overfitting.
 
 ---
 
@@ -77,26 +74,22 @@ AtmosCast is an end-to-end Machine Learning and atmospheric intelligence platfor
 
 | File / Path | Purpose |
 |---|---|
-| `requirements.txt` | Pinned project dependencies |
-| `.gitignore` | Excludes raw/processed data, models, reports/figures, cache, and secrets |
+| `requirements.txt` | Pinned project dependencies (including `xgboost>=2.0.0`) |
+| `.gitignore` | Excludes raw/processed data, models, cache, and secrets |
 | `.env.example` | Environment credentials template |
-| `.streamlit/config.toml` | Streamlit server and browser configurations |
-| `.streamlit/credentials.toml` | Local non-interactive credential stub |
 | `config/settings.yaml` | Master project settings (stations, pollutants, API routes, horizons) |
 | `src/utils/config.py` | Configuration reader with path safety and environment overrides |
-| `src/utils/visualizations.py` | Professional Plotly visualization suite with navy/teal theme |
+| `src/utils/visualizations.py` | Plotly visualization engine with dark-themed cards |
 | `src/utils/eda_runner.py` | Automated EDA processor and HTML figure exporter |
-| `src/utils/generate_notebook.py` | Reproducible EDA Jupyter notebook generator |
-| `src/data_collection/*.py` | Multi-source ingestion clients (Open-Meteo, OpenAQ v3, CAMS, FIRMS) |
-| `src/preprocessing/loader.py` | Raw data discovery, provenance loading, and schema validation |
-| `src/preprocessing/cleaner.py` | Quality control, coordinate checks, bounds enforcement, leakage-safe ffill, and QC logging |
-| `src/preprocessing/merger.py` | Station-safe inner joining on `[station_id, timestamp_utc]` and artifact exporter |
-| `src/preprocessing/pipeline.py` | Preprocessing orchestrator and automated report generator |
-| `notebooks/01_exploratory_data_analysis.ipynb` | Comprehensive interactive EDA notebook with markdown interpretations |
-| `reports/eda_summary_report.md` | Formal executive EDA summary report with statistical tables |
-| `reports/figures/*.html` | 8 interactive Plotly charts (time-series, diurnal, heatmap, scatters, episodes) |
-| `data/processed/merged_delhi_ncr_hourly.csv` | Aligned, coupled analytical dataset (1,008 rows) |
-| `tests/test_eda.py` | Unit test suite verifying figures, calculations, notebook, and reports |
+| `src/features/engineering.py` | Leakage-free feature engineering across 3 tiers (cyclical, circular wind, lags, stability) |
+| `src/models/baseline.py` | Scikit-learn compatible PersistenceForecaster (naive and diurnal modes) |
+| `src/models/trainer.py` | Chronological splitting, scaling, multi-horizon model training, and evaluation |
+| `src/models/predictor.py` | ModelPredictor (schema validation, inference) & MultiHorizonPredictor bundle |
+| `src/models/pipeline.py` | End-to-end ML runner generating model registry and markdown benchmark report |
+| `models/*.joblib` | 27 serialized model artifacts across all paradigms, tiers, and horizons |
+| `models/model_registry.json` | Manifest documenting all 27 models, feature counts, and metrics |
+| `reports/model_comparison_report.md` | Formal executive report with benchmark tables and scientific discussion |
+| `tests/test_modeling.py` | 15 unit tests verifying feature transforms, splitting, training, inference, and registry |
 | `PROJECT_STATUS.md` | 12-phase tracking log and milestone audit |
 
 ---
@@ -109,15 +102,16 @@ AtmosCast is an end-to-end Machine Learning and atmospheric intelligence platfor
   - `tests/test_data_collection.py`: 6 tests passed
   - `tests/test_preprocessing.py`: 8 tests passed
   - `tests/test_eda.py`: 11 tests passed
-- **Total Tests Passed**: **36 / 36 (100%)**
+  - `tests/test_modeling.py`: 15 tests passed
+- **Total Tests Passed**: **51 / 51 (100%)**
 - **Tests Failed**: 0
 
 ---
 
 ## Known Errors & Remaining Issues
-- None. Phase 4 EDA and all 8 interactive visualizations are verified, saved, and tested.
+- None. All 27 models trained, verified, serialized, and tested.
 
 ---
 
 ## Next Recommended Action
-Awaiting user approval and prompt to proceed to **PHASE 05: Boundary-Layer Meteorology & Atmospheric Feature Engineering** (lags, rolling statistics, ventilation coefficient, and inversion indicators).
+Awaiting user approval and prompt to proceed to **PHASE 06: Gradient-Boosted Multi-Horizon Model Optimization & Hyperparameter Tuning** (or the next planned phase prompt).

@@ -1,5 +1,7 @@
 """
-Feature Engineering Module
-Constructs temporal lags, rolling windows, meteorological interactions,
-PBL indicators, ventilation coefficient, and satellite fire proximity metrics.
+Feature Engineering Package for AtmosCast.
 """
+
+from src.features.engineering import FeatureEngineer
+
+__all__ = ["FeatureEngineer"]
