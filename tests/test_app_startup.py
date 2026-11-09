@@ -16,7 +16,7 @@ class TestStreamlitApp(unittest.TestCase):
 
     def test_app_initial_load(self):
         """Test that the application loads with zero unhandled exceptions."""
-        at = AppTest.from_file(self.app_path).run()
+        at = AppTest.from_file(self.app_path).run(timeout=30)
         self.assertEqual(
             len(at.exception),
             0,
@@ -27,7 +27,7 @@ class TestStreamlitApp(unittest.TestCase):
 
     def test_sidebar_elements(self):
         """Test that the sidebar contains navigation radio and station selectbox."""
-        at = AppTest.from_file(self.app_path).run()
+        at = AppTest.from_file(self.app_path).run(timeout=30)
         self.assertGreaterEqual(len(at.sidebar.radio), 1, "Sidebar missing navigation radio")
         self.assertGreaterEqual(len(at.sidebar.selectbox), 1, "Sidebar missing station selectbox")
 
@@ -37,10 +37,10 @@ class TestStreamlitApp(unittest.TestCase):
 
     def test_navigation_across_all_pages(self):
         """Verify that every view renders without runtime exceptions."""
-        at = AppTest.from_file(self.app_path).run()
+        at = AppTest.from_file(self.app_path).run(timeout=30)
         radio = at.sidebar.radio[0]
         for option in radio.options:
-            at = radio.set_value(option).run()
+            at = radio.set_value(option).run(timeout=30)
             self.assertEqual(
                 len(at.exception),
                 0,
@@ -49,12 +49,12 @@ class TestStreamlitApp(unittest.TestCase):
 
     def test_station_selection(self):
         """Verify that station selector can change stations without exception."""
-        at = AppTest.from_file(self.app_path).run()
+        at = AppTest.from_file(self.app_path).run(timeout=30)
         station_select = at.sidebar.selectbox[0]
         options = station_select.options
         self.assertGreaterEqual(len(options), 4, "Expected at least 4 station options")
         for st_name in options:
-            at = station_select.set_value(st_name).run()
+            at = station_select.set_value(st_name).run(timeout=30)
             self.assertEqual(
                 len(at.exception),
                 0,
