@@ -183,6 +183,65 @@ AtmosCast is an end-to-end Machine Learning and atmospheric intelligence platfor
 
 ---
 
+## Phase 13 / UI/UX Redesign & Environmental Intelligence SaaS Transformation
+
+- **Status**: **COMPLETED**
+- **Objective**: Transform the existing AtmosCast dashboard from an engineering prototype into an executive-grade, modern SaaS Environmental Intelligence platform adhering strictly to SIH26082 specifications without breaking underlying ML models, data pipelines, or test suites.
+- **Visual Design Direction & Tokens**:
+  - `Primary Background`: `#F6F8FA` (Slate light gray)
+  - `Sidebar Background`: `#102A43` (Deep executive navy)
+  - `Primary Accent`: `#0D9488` (Teal)
+  - `Secondary Accent`: `#38BDF8` (Sky blue)
+  - `Text Primary`: `#172B4D` (Deep slate)
+  - `Text Secondary`: `#64748B` (Muted slate)
+  - `Card Background`: `#FFFFFF` (Crisp white with subtle 1px border and 2px drop shadow)
+  - `Critical Indicator`: `#EF6461` (Coral red)
+  - `Warning Indicator`: `#F59E0B` (Amber)
+  - `Typography`: Plus Jakarta Sans for titles/headers, Inter for body text, JetBrains Mono for telemetry metrics.
+- **Implemented View Enhancements**:
+  1. **Global SaaS Architecture (`app.py`, `theme.py`)**:
+     - Persistent Command Topbar with real-time operational status, active station telemetry, and pulsing green health beacon.
+     - Dark executive navy sidebar with clean typography, compact layout, and distinct metadata tags.
+     - Universal Plotly SaaS theme engine (`apply_custom_chart_theme`) ensuring cohesive font rendering, crisp grids, and synchronized hover templates across all charts.
+  2. **Executive Overview (`overview.py`)**:
+     - 6 Key KPI Cards: PM2.5, PM10, O3 (with explicit "Unavailable" state for missing night data), 2m Temp, Wind Speed, and Forecast Horizon.
+     - Dynamic Wind Stagnation indicator badge (< 5.4 km/h / 1.5 m/s threshold).
+     - Interactive Delhi NCR Monitoring Map using `plotly.graph_objects.Scattermap` with `open-street-map` tile layer (100% offline-ready, no API keys required).
+     - CPCB Statutory Health Advisory & GRAP Stage Banner (`render_health_alert`) computing real-time caution levels.
+     - Multi-Horizon forecast availability and model performance snapshot.
+  3. **Air Quality Monitoring (`air_quality.py`)**:
+     - Date-range filtering with interactive `st.date_input`.
+     - 3-tab layout: Hourly Concentrations, 24-Hour Rolling Averages, and Diurnal Cycle Profiles.
+     - Atmospheric diagnostic callout for PM2.5 / PM10 ratio with particulate fractionation analysis.
+     - Direct CSV data export download button for filtered observations.
+  4. **72-Hour Forecast (`forecast.py`)**:
+     - Interactive horizon toggle selector: 24h, 48h, 72h, or Full 72h window.
+     - Distinct visual styling differentiating historical observations from direct multi-horizon forecasts.
+     - Provenance metadata strip displaying model version, training horizon, and inference timestamp.
+     - CSV export button for 72-hour forecast trajectory data.
+  5. **Meteorological Analysis (`weather.py`)**:
+     - 2-tab structure: Meteorological Time-Series Panels and Pollution-Weather Coupling Scatter Plots (PM2.5 vs Wind Speed, PM2.5 vs Relative Humidity).
+     - Honest scientific disclaimer regarding boundary layer height (`boundary_layer_height` is null in the Open-Meteo extraction).
+  6. **Model Performance Laboratory (`performance.py`)**:
+     - 3-tab analytical structure: Benchmarks, Model Comparison Laboratory, and Diagnostics.
+     - Interactive Model Comparison Lab allowing dynamic selection of metric (RMSE, MAE, R²) and horizon (h24, h48, h72) with ranked bar charts and comparative tables.
+     - Transparent scientific explanation of test-set peak compression and negative R² values under severe out-of-distribution smog surges.
+  7. **Explainable AI / SHAP (`explainability.py`)**:
+     - Updated to unified SaaS color palette (`#172B4D`).
+     - Global TreeSHAP feature importance rankings, feature group attributions, and local waterfall explanations for individual prediction points.
+     - Rigorous clarification distinguishing statistical attribution from physical atmospheric causation.
+  8. **Pollution Episode Deep-Dive (`episodes.py`)**:
+     - Forensic autopsy of the acute January 5–6, 2024 severe smog episode.
+     - Multi-parameter coupled time-series visualization illustrating boundary layer collapse and wind stagnation.
+  9. **Data Governance & Health Monitor (`about.py`)**:
+     - Real-time Data Source Health Monitor tracking dataset record counts, file size, last modified date, and 27-model artifact availability.
+     - Built-in System Summary Report generator and dataset CSV download.
+- **Verification**:
+  - Full test suite: **114 / 114 tests PASSED** (90s).
+  - Streamlit AppTest (`test_app_startup.py`): **4 / 4 PASSED** (initial load, sidebar, navigation across all 8 pages, station switching).
+
+---
+
 ## Test Results
 - **Test Runner**: `pytest 9.2.0` (in `.venv`)
 - **Tests Executed**:

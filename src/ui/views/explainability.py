@@ -13,7 +13,7 @@ from src.explainability.plots import (
     plot_waterfall_explanation,
     plot_shap_dependence,
 )
-
+from src.ui.theme import render_page_header
 
 # Resolve project root relative to this file - works on Streamlit Cloud and locally
 _VIEW_DIR = Path(__file__).resolve().parent          # src/ui/views/
@@ -42,27 +42,26 @@ def render_explainability_view(sample_df: pd.DataFrame):
     """
     Renders the Explainable AI (SHAP) dashboard.
     """
+    render_page_header(
+        kicker="COOPERATIVE GAME-THEORETIC ATTRIBUTION",
+        title="Explainable AI & Atmospheric Feature Attribution (TreeSHAP)",
+        subtitle="Decomposing the 48-hour XGBoost forecasting model into exact marginal attributions across antecedent pollution history, surface meteorology, and calendar cycles.",
+    )
+
+    # Executive Summary Card
     st.markdown(
         """
-        <div class="hero-header">
-            <div class="hero-title">Explainable AI & Atmospheric Attribution</div>
-            <div class="hero-subtitle">
-                Cooperative game-theoretic SHAP (TreeExplainer) insights into 48-hour PM2.5 forecasting dynamics
-            </div>
+        <div class="intel-brief">
+            <div class="intel-brief-title">Executive Attribution Summary: What Drives 48-Hour Projections?</div>
+            <p class="intel-brief-body">
+                <strong>Pollution Momentum (52.1% Macro Share):</strong> Current particulate concentration and 24h rolling averages establish the baseline trajectory; high antecedent burden requires sustained ventilation to clear.<br>
+                <strong>Surface Wind Speed (Primary Atmospheric Gate):</strong> Below 5.4 km/h (1.5 m/s), ventilation collapses, driving model attributions sharply upward due to emissions stagnation.<br>
+                <strong>Relative Humidity (Secondary Aerosol Driver):</strong> High humidity (> 85%) significantly increases predicted concentrations, capturing aqueous gas-to-particle conversion.<br>
+                <strong>Diurnal Thermodynamics:</strong> Captures boundary-layer expansion during daylight and compression under nocturnal radiation cooling.
+            </p>
         </div>
         """,
         unsafe_allow_html=True,
-    )
-
-    # Non-Technical Summary Banner
-    st.markdown(
-        r"""
-        ### What Drives the 48-Hour Forecast? (Plain-Language Summary)
-        - 🌫️ **Pollution Baseline (52.1% Share):** The city's current air quality and 24-hour rolling averages act as a baseline foundation. High antecedent particulate matter takes time to clear.
-        - 💨 **Surface Wind Speed (Primary Steering Factor):** When wind speed drops below **5 km/h**, horizontal ventilation collapses, trapping emissions near the ground and pushing forecasts upward.
-        - 💧 **Moisture Catalyst:** High relative humidity (> 85%) sharply elevates predicted concentrations, capturing secondary inorganic aerosol formation (gas-to-particle conversion).
-        - ☀️ **Diurnal Mixing:** Daytime solar heating expands the boundary layer, while nocturnal radiative cooling locks in emissions.
-        """
     )
 
     st.markdown("---")
@@ -82,7 +81,10 @@ def render_explainability_view(sample_df: pd.DataFrame):
     y_test = split_data["y_test"]
 
     # Global SHAP & Group Share Columns
-    st.markdown("### Global Feature Attribution Breakdown")
+    st.markdown(
+        "<div style='font-family: \"Plus Jakarta Sans\", sans-serif; font-size: 1.05rem; font-weight: 700; color: #172B4D; margin-bottom: 0.5rem;'>Global Atmospheric Feature Importance Hierarchy</div>",
+        unsafe_allow_html=True,
+    )
     c_left, c_right = st.columns([3, 2])
 
     with c_left:
@@ -98,7 +100,10 @@ def render_explainability_view(sample_df: pd.DataFrame):
     st.markdown("---")
 
     # Local Waterfall Prediction Decomposition
-    st.markdown("### Dissecting an Individual Prediction: Severe Smog Surge (January 5–6, 2024)")
+    st.markdown(
+        "<div style='font-family: \"Plus Jakarta Sans\", sans-serif; font-size: 1.05rem; font-weight: 700; color: #172B4D; margin-bottom: 0.5rem;'>Single-Observation Waterfall Decomposition: Severe Smog Episode</div>",
+        unsafe_allow_html=True,
+    )
     peak_idx = y_test.idxmax()
     peak_row = X_test.loc[peak_idx]
     peak_actual = float(y_test.loc[peak_idx])
@@ -106,14 +111,17 @@ def render_explainability_view(sample_df: pd.DataFrame):
 
     fig_waterfall = plot_waterfall_explanation(
         peak_explanation,
-        sample_title=f"Severe Smog Peak (Actual PM2.5: {peak_actual:.1f} µg/m³)"
+        sample_title=f"Severe Smog Peak (Observed PM2.5: {peak_actual:.1f} µg/m³)"
     )
     st.plotly_chart(fig_waterfall, use_container_width=True)
 
     st.markdown("---")
 
     # Meteorological Non-Linear Dependence
-    st.markdown("### Non-Linear Stagnation Threshold: Wind Speed vs. SHAP Impact")
+    st.markdown(
+        "<div style='font-family: \"Plus Jakarta Sans\", sans-serif; font-size: 1.05rem; font-weight: 700; color: #172B4D; margin-bottom: 0.5rem;'>Non-Linear Stagnation Threshold: 10m Wind Speed vs. Model Attribution</div>",
+        unsafe_allow_html=True,
+    )
     shap_matrix, _ = explainer.compute_shap_values(X_test)
     wind_idx = explainer.feature_names.index("wind_speed_10m")
     wind_vals = X_test["wind_speed_10m"].to_numpy()
@@ -123,7 +131,12 @@ def render_explainability_view(sample_df: pd.DataFrame):
     st.plotly_chart(fig_dep, use_container_width=True)
 
     # Scientific Integrity Guardrails Box
-    st.markdown("### Scientific Attribution Guardrails")
-    st.info(
-        "⚖️ **Causality vs. Association:** SHAP values measure statistical feature attribution inside the machine learning model. They do NOT prove physical causality. High attribution reflects strong predictive association, not that a variable emits pollutants."
+    st.markdown(
+        """
+        <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 0.85rem 1.15rem; margin-top: 1rem; font-size: 0.78rem; color: #64748B; line-height: 1.45;">
+            <strong style="color: #172B4D;">Statistical Association vs. Physical Causality:</strong>
+            TreeSHAP values quantify cooperative game-theoretic feature attribution inside the machine learning model. High SHAP attribution reflects strong statistical predictive association—it does NOT imply that a meteorological variable is an emission source.
+        </div>
+        """,
+        unsafe_allow_html=True,
     )

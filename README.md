@@ -118,17 +118,17 @@ During the **January 5–7, 2024 peak episode** captured in this dataset, PM2.5 
 - **Episode waterfall decomposition**: Attribute individual severe-smog predictions to their atmospheric drivers
 - **Non-technical narratives**: Plain-language explanations for public-facing communication
 
-### 📊 Dashboard (8 Pages)
-| Page | Description |
+### 📊 Dashboard (8 SaaS Environmental Intelligence Pages)
+| Page | Key Capabilities & Features |
 |---|---|
-| **Overview** | Live station KPI cards, statutory CPCB AQI status pill, forecast availability |
-| **Air Quality Monitoring** | Multi-pollutant time-series with WHO/CPCB threshold lines |
-| **72-Hour Forecast** | Continuous trajectory with 90% CI bands and milestone cards |
-| **Weather Analysis** | Atmospheric diagnostics: stagnation, PBL surrogates, humidity |
-| **Pollution Episode Analysis** | Jan 5–6, 2024 deep-dive with wind speed collapse and station comparison |
-| **Model Performance** | Benchmark tables, residual plots, peak-compression diagnostics |
-| **Explainable AI** | SHAP waterfall, global importance, feature-group donut chart |
-| **Data Sources & About** | Provenance, licenses, SIH26082 alignment, data quality audit |
+| **Overview** | Persistent Command Topbar, 6 KPI cards (PM2.5, PM10, O3 with unavailable state, Temp, Wind, Horizon), interactive Delhi NCR Map (`Scattermap` with OSM), 7-day trend, CPCB Statutory Health Alert / GRAP advisory banner, model status snapshot |
+| **Air Quality Monitoring** | Date-range filtering, 3-tab layout (Hourly, 24h Rolling Averages, Diurnal Cycle Profile), PM2.5/PM10 particulate fractionation diagnostics, direct CSV data export |
+| **72-Hour Forecast** | Interactive horizon toggle (24h, 48h, 72h, full window), 90% prediction intervals, distinct historical vs. forecast styling, model provenance strip, forecast CSV export |
+| **Weather Analysis** | Meteorological panels (Temp, RH, Wind, Pressure), pollution-weather coupling scatter plots (PM2.5 vs Wind, PM2.5 vs RH), honest BLH disclaimer |
+| **Pollution Episode Analysis** | Forensic Jan 5–6, 2024 severe smog autopsy, multi-parameter coupled time-series, boundary-layer stagnation diagnosis |
+| **Model Performance** | 3-tab architecture (Benchmarks, Interactive Model Comparison Laboratory, Diagnostics), dynamic metric/horizon rank chart, honest peak-compression analysis |
+| **Explainable AI** | TreeSHAP exact game-theoretic attributions, global feature ranking, feature group shares, local waterfall plots, scientific attribution vs. causation notes |
+| **Data Sources & About** | Multi-agency sensor ingestion provenance (OpenAQ, OpenMeteo, FIRMS, CAMS), real-time Data Source Health Monitor, downloadable system summary & dataset CSV |
 
 ### ✅ Quality Assurance
 - **114/114 tests passing** (pytest), 100% pass rate across 10 test modules
